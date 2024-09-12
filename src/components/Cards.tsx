@@ -1,46 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../src/index.css";
 import { Card } from "antd";
+import bina from "../images/bina.png";
 import location from "../images/location.png";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
 import zipCode from "../images/zipCode.png";
-
+import axios from "axios";
+import { RealEstates } from "./HomeList";
 const { Meta } = Card;
 
-const Cards: React.FC = () => (
-  <Card
-    hoverable
-    style={{ width: 384 }}
-    cover={
-      <img
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+const Cards: React.FC<RealEstates | any> = ({ data }) => {
+  return (
+    <Card
+      hoverable
+      style={{ width: 384 }}
+      cover={<img alt="example" src={bina} />}
+    >
+      <Meta
+        title={
+          <p
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              padding: "5px",
+              backgroundColor: "#02152680",
+              borderRadius: "20px",
+              color: "white",
+            }}
+          >
+            {data?.is_rental === 0 ? "ქირავდება" : "იყიდება"}
+          </p>
+        }
       />
-    }
-  >
-    <Meta title={<h2 style={{ fontWeight: "bold" }}>80 000 ₾</h2>} />
-    <Meta
-      description={
-        <div style={{}}>
-          <img src={location} alt="" />
-          <span style={{ marginLeft: "10px" }}>თბილისი, ი. ჭავჭავაძის 53</span>
-        </div>
-      }
-    />
-    <Meta
-      description={
-        <div style={{ marginTop: "15px" }}>
-          <img src={bedrooms} alt="" />{" "}
-          <span style={{ marginLeft: "3px" }}>2</span>
-          <img style={{ marginLeft: "30px" }} src={area} alt="" />{" "}
-          <span style={{ marginLeft: "3px" }}>55მ²</span>
-          <img style={{ marginLeft: "30px" }} src={zipCode} alt="" />{" "}
-          <span style={{ marginLeft: "3px" }}>0160</span>
-        </div>
-      }
-    />
-  </Card>
-);
+      <Meta title={<h2 style={{ fontWeight: "bold" }}> {data.price} ₾</h2>} />
+      <Meta
+        description={
+          <>
+            <img src={location} alt="" />
+            <span style={{ marginLeft: "10px" }}>
+              {data?.city.name}, {data?.address}
+            </span>
+          </>
+        }
+      />
+      <Meta
+        description={
+          <div style={{ marginTop: "15px" }}>
+            <img src={bedrooms} alt="" />{" "}
+            <span style={{ marginLeft: "3px" }}>{data?.bedrooms}</span>
+            <img style={{ marginLeft: "30px" }} src={area} alt="" />{" "}
+            <span style={{ marginLeft: "3px" }}>{data?.area}მ²</span>
+            <img style={{ marginLeft: "30px" }} src={zipCode} alt="" />{" "}
+            <span style={{ marginLeft: "3px" }}>{data?.zip_code}</span>
+          </div>
+        }
+      />
+    </Card>
+  );
+};
 
 export default Cards;
