@@ -1,0 +1,39 @@
+.fullBox {
+  display: flex;
+  justify-content: space-between;
+}
+.filter {
+  width: 49%;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+}
+select {
+  border: none;
+  outline: none;
+}
+.listing {
+  width: 230px;
+  height: 47px;
+  margin-right: 10px;
+  background-color: #f93b1d;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.agent {
+  width: 203px;
+  height: 47px;
+  margin-right: 10px;
+  background-color: white;
+  color: #f93b1d;
+  border-radius: 10px;
+  border: 1px solid #f93b1d;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
