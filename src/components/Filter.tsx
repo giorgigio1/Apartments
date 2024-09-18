@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/filter.css";
 import { useState } from "react";
 import AgentModal from "./AgentModal";
+
 const Filter = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<any>(false);
