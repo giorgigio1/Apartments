@@ -5,11 +5,6 @@
   font-family: "FiraGO";
 }
 body {
-  padding: 0 150px;
   display: flex;
   flex-direction: column;
 }
-/* @font-face {
-  font-family: "FiraGO";
-  src: url('https://free.bboxtype.com/embedfonts/?family=FiraGO:400,500');
-} */

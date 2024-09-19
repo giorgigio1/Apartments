@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Cards from "./Cards";
 import axios from "axios";
+import "../styles/homeList.css";
 
 export interface RealEstates {
   id: number;
@@ -53,13 +54,7 @@ const HomeList = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "22px",
-        }}
-      >
+      <div className="homeList">
         {data?.map((item: RealEstates) => (
           <Cards key={item.id} data={item} />
         ))}

@@ -7,7 +7,6 @@ const Home = () => {
     <>
       <Header />
       <Filter />
-      <div style={{ margin: "20px" }}></div>
       <HomeList />
     </>
   );

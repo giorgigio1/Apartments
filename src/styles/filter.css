@@ -1,6 +1,8 @@
 .fullBox {
   display: flex;
   justify-content: space-between;
+  margin-top: 70px;
+  padding: 0 150px;
 }
 .filter {
   width: 49%;

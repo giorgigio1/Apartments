@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../../src/index.css";
 import { Card } from "antd";
 import bina from "../images/bina.png";
@@ -6,7 +6,6 @@ import location from "../images/location.png";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
 import zipCode from "../images/zipCode.png";
-import axios from "axios";
 import { RealEstates } from "./HomeList";
 const { Meta } = Card;
 

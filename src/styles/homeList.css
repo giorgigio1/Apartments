@@ -1,0 +1,7 @@
+.homeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  padding: 0 150px;
+  margin: 20px 0;
+}

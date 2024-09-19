@@ -3,9 +3,11 @@ import "../styles/header.css";
 
 const Header = () => {
   return (
-    <figure className="figure">
-      <img className="img" src={logo} alt="" />
-    </figure>
+    <div className="head">
+      <figure className="figure">
+        <img className="img" src={logo} alt="" />
+      </figure>
+    </div>
   );
 };
 
