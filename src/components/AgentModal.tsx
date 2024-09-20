@@ -149,7 +149,7 @@ const AgentModal: React.FC<AgentModalProps> = ({
           </label>
 
           <p style={{ color: errors.avatar ? "red" : "black" }}>
-            {errors.avatar ? "Please upload a profile picture" : ""}
+            {errors.avatar ? "გთხოვთ ატვირთეთ ფოტო" : ""}
           </p>
           {imagePreview && (
             <div className=".image-preview-container">
