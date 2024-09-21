@@ -1,17 +1,26 @@
-import React from "react";
-import "../../src/index.css";
 import { Card } from "antd";
-import location from "../images/location.png";
+import Meta from "antd/es/card/Meta";
+import { useLocation, useNavigate } from "react-router-dom";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
 import zipCode from "../images/zipCode.png";
-import { RealEstates } from "./HomeList";
-import { Link } from "react-router-dom";
-const { Meta } = Card;
+import location from "../images/location.png";
+import arrowLeft from "../images/arrowLeft.png";
+import Header from "./Header";
 
-const Cards: React.FC<RealEstates | any> = ({ data }) => {
+const CardDetails = () => {
+  const { data } = useLocation().state;
+  const navigate = useNavigate();
+
   return (
-    <Link to={`/card/${data.id}`} state={{ id: data.id, data }}>
+    <>
+      <Header />
+      <img
+        src={arrowLeft}
+        alt=""
+        onClick={() => navigate("/")}
+        style={{ cursor: "pointer", margin: "50px 0 30px 20px" }}
+      />
       <Card
         hoverable
         style={{ width: 384 }}
@@ -64,8 +73,9 @@ const Cards: React.FC<RealEstates | any> = ({ data }) => {
           }
         />
       </Card>
-    </Link>
+      <h1>ბინები მსგავს ლოკაციაზე</h1>
+    </>
   );
 };
 
-export default Cards;
+export default CardDetails;
