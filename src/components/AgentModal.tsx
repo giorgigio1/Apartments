@@ -152,7 +152,7 @@ const AgentModal: React.FC<AgentModalProps> = ({
             {errors.avatar ? "გთხოვთ ატვირთეთ ფოტო" : ""}
           </p>
           {imagePreview && (
-            <div className=".image-preview-container">
+            <div className="image-preview-container">
               <img
                 src={imagePreview}
                 alt="Uploaded Preview"

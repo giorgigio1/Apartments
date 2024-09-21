@@ -35,7 +35,7 @@ const Filter = () => {
         <button className="listing" onClick={() => navigate("/add")}>
           + ლისტინგის დამატება
         </button>
-        <button className="agent" onClick={() => setIsModalOpen(true)}>
+        <button className="agentButton" onClick={() => setIsModalOpen(true)}>
           + აგენტის დამატება
         </button>
       </div>

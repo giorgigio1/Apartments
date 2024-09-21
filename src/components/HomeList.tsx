@@ -26,7 +26,6 @@ export interface RealEstates {
 
 const HomeList = () => {
   const [data, setData] = useState<RealEstates | any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const token = "9cfdee15-9ebf-4031-9312-e527806e013f";
 
   const fetchData = async () => {
@@ -41,10 +40,8 @@ const HomeList = () => {
       );
 
       setData(response.data);
-      setLoading(false);
     } catch (error) {
       console.error("There was an error fetching data:", error);
-      setLoading(false);
     }
   };
 

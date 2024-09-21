@@ -12,12 +12,12 @@
   border-radius: 10px;
   padding: 0 10px 0 10px;
 }
-select {
+.filter select {
   border: none;
   outline: none;
 }
-.listing {
-  width: 230px;
+.addListingButton {
+  width: 187px;
   height: 47px;
   margin-right: 10px;
   background-color: #f93b1d;
@@ -27,8 +27,8 @@ select {
   outline: none;
   cursor: pointer;
 }
-.agent {
-  width: 203px;
+.cancelButton {
+  width: 100px;
   height: 47px;
   margin-right: 10px;
   background-color: white;

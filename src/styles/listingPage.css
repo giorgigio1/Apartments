@@ -7,7 +7,6 @@
 }
 .listingForm {
   width: 41%;
-  background-color: aqua;
 }
 .isRental {
   margin: 30px 0 70px 0;
@@ -45,7 +44,9 @@ input[type="radio"]:checked::before {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.location {
+.location,
+.price,
+.homeDetails {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -53,7 +54,12 @@ input[type="radio"]:checked::before {
 .address,
 .zipCode,
 .region,
-.city {
+.city,
+.price,
+.area,
+.bedrooms,
+.description,
+.agent {
   display: flex;
   flex-direction: column;
 }
@@ -64,12 +70,90 @@ input[type="radio"]:checked::before {
 .locationTitle {
   font-size: 16px;
   font-weight: 500;
-  margin-top: 50px !important;
+  margin-top: 50px;
 }
-.location input, .location select {
+.location input,
+.location select,
+.price input,
+.area input,
+.bedrooms input {
   width: 384px;
   height: 40px;
   border-radius: 10px;
   outline: none;
   border: 1px solid black;
+}
+.region {
+  margin-bottom: 50px;
+}
+.homeDetailsLabel {
+  font-weight: 500;
+}
+.homeDetails {
+  margin-top: 20px;
+}
+.description {
+  margin-top: 10px;
+}
+.description textarea {
+  border-radius: 10px;
+  height: 150px;
+}
+.uploadPicture {
+  margin-bottom: 50px;
+}
+.agent {
+  margin-top: 10px;
+}
+.agent select {
+  width: 384px;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid black;
+}
+.formActions {
+  display: flex;
+  justify-content: end;
+  margin: 50px 0 70px 0;
+}
+.listing {
+  width: 230px;
+  height: 47px;
+  margin-right: 10px;
+  background-color: #f93b1d;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.agentButton {
+  width: 203px;
+  height: 47px;
+  margin-right: 10px;
+  background-color: white;
+  color: #f93b1d;
+  border-radius: 10px;
+  border: 1px solid #f93b1d;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.listingPage label {
+  font-size: 14px;
+}
+.listingTitles {
+  font-size: 16px !important;
+  font-weight: 500;
+}
+.categoryTitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+.listingErrors {
+  color: red;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 5px;
 }
