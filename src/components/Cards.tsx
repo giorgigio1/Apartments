@@ -1,7 +1,6 @@
 import React from "react";
 import "../../src/index.css";
 import { Card } from "antd";
-import bina from "../images/bina.png";
 import location from "../images/location.png";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
@@ -14,7 +13,13 @@ const Cards: React.FC<RealEstates | any> = ({ data }) => {
     <Card
       hoverable
       style={{ width: 384 }}
-      cover={<img alt="example" src={bina} />}
+      cover={
+        <img
+          style={{ width: "384px", height: "307px", objectFit: "cover" }}
+          alt="example"
+          src={data.image}
+        />
+      }
     >
       <Meta
         title={
