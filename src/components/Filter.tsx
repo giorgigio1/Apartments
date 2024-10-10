@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import "../styles/filter.css";
 import { useState } from "react";
 import AgentModal from "./AgentModal";
+import { useNavigate } from "react-router-dom";
 
 const Filter = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState<any>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="fullBox">
+    <div className={isModalOpen ? "fullBox blur-background" : "fullBox"}>
       <div className="filter">
         <select name="" id="">
           <option value="">რეგიონი</option>

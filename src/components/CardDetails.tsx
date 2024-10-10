@@ -1,5 +1,3 @@
-import { Card } from "antd";
-import Meta from "antd/es/card/Meta";
 import { useLocation, useNavigate } from "react-router-dom";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
@@ -7,73 +5,127 @@ import zipCode from "../images/zipCode.png";
 import location from "../images/location.png";
 import arrowLeft from "../images/arrowLeft.png";
 import Header from "./Header";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { AiOutlineMail } from "react-icons/ai";
+import { FiPhoneCall } from "react-icons/fi";
+import "../styles/cardDetails.css";
 
-const CardDetails = () => {
-  const { data } = useLocation().state;
+interface HomeInfo {
+  id: number;
+  address: string;
+  image: string;
+  zip_code: string;
+  description: string;
+  price: number;
+  bedrooms: number;
+  area: number;
+  is_rental: number;
+  agent_id: number;
+  city_id: number;
+  created_at: string;
+  city: {
+    id: number;
+    name: string;
+    region_id: number;
+    region: {
+      id: number;
+      name: string;
+    };
+  };
+  agent: {
+    id: number;
+    name: string;
+    surname: string;
+    email: string;
+    avatar: string;
+    phone: string;
+  };
+}
+
+const CardDetails: React.FC = () => {
+  const [homeInfo, setHomeInfo] = useState<HomeInfo>();
+
+  const { id } = useLocation().state;
   const navigate = useNavigate();
+
+  const token = "9cfdee15-9ebf-4031-9312-e527806e013f";
+
+  useEffect(() => {
+    const fetchCardDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.real-estate-manager.redberryinternship.ge/api/real-estates/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setHomeInfo(response.data);
+      } catch (error) {
+        console.error("There was an error fetching data:", error);
+      }
+    };
+    fetchCardDetails();
+  }, []);
 
   return (
     <>
       <Header />
-      <img
+      <input
+        type="image"
+        className="arrowLeft"
         src={arrowLeft}
-        alt=""
+        alt="Back"
         onClick={() => navigate("/")}
-        style={{ cursor: "pointer", margin: "50px 0 30px 20px" }}
       />
-      <Card
-        hoverable
-        style={{ width: 384 }}
-        cover={
-          <img
-            style={{ width: "384px", height: "307px", objectFit: "cover" }}
-            alt="example"
-            src={data.image}
-          />
-        }
-      >
-        <Meta
-          title={
-            <p
-              style={{
-                position: "absolute",
-                top: "20px",
-                left: "20px",
-                padding: "5px",
-                backgroundColor: "#02152680",
-                borderRadius: "20px",
-                color: "white",
-              }}
-            >
-              {data?.is_rental === 0 ? "ქირავდება" : "იყიდება"}
+
+      <div className="details">
+        <div className="leftCard">
+          <img className="" src={homeInfo?.image} alt="" />
+          <label htmlFor="">{homeInfo?.created_at}</label>
+          <p>{homeInfo?.is_rental === 0 ? "ქირავდება" : "იყიდება"}</p>
+        </div>
+        <div className="rightCard">
+          <h2>{homeInfo?.price} ₾</h2>
+          <p>
+            <img src={location} alt="" /> {homeInfo?.city_id},{" "}
+            {homeInfo?.address}
+          </p>
+          <p>
+            <img src={area} alt="" /> ფართი{homeInfo?.area} მ²
+          </p>
+          <p>
+            <img src={bedrooms} alt="" /> საძინებელი {homeInfo?.bedrooms}
+          </p>
+          <p>
+            <img src={zipCode} alt="" /> საფოსტო ინდექსი {homeInfo?.zip_code}
+          </p>
+          <p>{homeInfo?.description}</p>
+          <div className="agent">
+            <img
+              src={homeInfo?.agent.avatar}
+              style={{ width: "50px" }}
+              alt=""
+            />
+            <p>
+              {homeInfo?.agent.name} {homeInfo?.agent.surname}
             </p>
-          }
-        />
-        <Meta title={<h2 style={{ fontWeight: "bold" }}> {data.price} ₾</h2>} />
-        <Meta
-          description={
-            <>
-              <img src={location as any} alt="" />
-              <span style={{ marginLeft: "10px" }}>
-                {data?.city.name}, {data?.address}
-              </span>
-            </>
-          }
-        />
-        <Meta
-          description={
-            <div style={{ marginTop: "15px" }}>
-              <img src={bedrooms} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.bedrooms}</span>
-              <img style={{ marginLeft: "30px" }} src={area} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.area}მ²</span>
-              <img style={{ marginLeft: "30px" }} src={zipCode} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.zip_code}</span>
-            </div>
-          }
-        />
-      </Card>
-      <h1>ბინები მსგავს ლოკაციაზე</h1>
+            <label htmlFor="agent">აგენტი</label>
+            <p>
+              <AiOutlineMail />
+              {homeInfo?.agent.email}
+            </p>
+
+            <p>
+              <FiPhoneCall />
+              {homeInfo?.agent.phone}
+            </p>
+          </div>
+          <button>ლისტინგის წაშლა</button>
+        </div>
+      </div>
     </>
   );
 };

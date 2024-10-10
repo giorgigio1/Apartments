@@ -3,7 +3,7 @@ import Cards from "./Cards";
 import axios from "axios";
 import "../styles/homeList.css";
 
-export interface RealEstates {
+export interface RealEstate {
   id: number;
   address: string;
   zip_code: string;
@@ -25,12 +25,12 @@ export interface RealEstates {
 }
 
 const HomeList = () => {
-  const [data, setData] = useState<RealEstates | any>(null);
+  const [realEstates, setRealEstates] = useState<RealEstate[]>();
   const token = "9cfdee15-9ebf-4031-9312-e527806e013f";
 
-  const fetchData = async () => {
+  const fetchRealEstates = async () => {
     try {
-      const response = await axios.get<RealEstates>(
+      const response = await axios.get(
         "https://api.real-estate-manager.redberryinternship.ge/api/real-estates",
         {
           headers: {
@@ -39,24 +39,22 @@ const HomeList = () => {
         }
       );
 
-      setData(response.data);
+      setRealEstates(response.data);
     } catch (error) {
-      console.error("There was an error fetching data:", error);
+      console.error("There was an error fetching real estates:", error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchRealEstates();
   }, [token]);
 
   return (
-    <>
-      <div className="homeList">
-        {data?.map((item: RealEstates) => (
-          <Cards key={item.id} data={item} />
-        ))}
-      </div>
-    </>
+    <div className="homeList">
+      {realEstates?.map((realEstate: RealEstate) => (
+        <Cards key={realEstate.id} realEstate={realEstate} />
+      ))}
+    </div>
   );
 };
 

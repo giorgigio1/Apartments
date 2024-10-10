@@ -1,25 +1,26 @@
-import React from "react";
-import "../../src/index.css";
-import { Card } from "antd";
 import location from "../images/location.png";
 import bedrooms from "../images/bedrooms.png";
 import area from "../images/area.png";
 import zipCode from "../images/zipCode.png";
-import { RealEstates } from "./HomeList";
+import { RealEstate } from "./HomeList";
+import { Card } from "antd";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
-const Cards: React.FC<RealEstates | any> = ({ data }) => {
+const Cards = ({ realEstate }: { realEstate: RealEstate }) => {
   return (
-    <Link to={`/card/${data.id}`} state={{ id: data.id, data }}>
+    <Link
+      to={`/card/${realEstate.id}`}
+      state={{ id: realEstate.id }}
+      style={{ textDecoration: "none" }}
+    >
       <Card
-        hoverable
         style={{ width: 384 }}
         cover={
           <img
             style={{ width: "384px", height: "307px", objectFit: "cover" }}
             alt="example"
-            src={data.image}
+            src={realEstate.image}
           />
         }
       >
@@ -36,17 +37,21 @@ const Cards: React.FC<RealEstates | any> = ({ data }) => {
                 color: "white",
               }}
             >
-              {data?.is_rental === 0 ? "ქირავდება" : "იყიდება"}
+              {realEstate?.is_rental === 0 ? "ქირავდება" : "იყიდება"}
             </p>
           }
         />
-        <Meta title={<h2 style={{ fontWeight: "bold" }}> {data.price} ₾</h2>} />
+        <Meta
+          title={
+            <h2 style={{ fontWeight: "bold" }}>{realEstate.price} 11 ₾</h2>
+          }
+        />
         <Meta
           description={
             <>
-              <img src={location as any} alt="" />
+              <img src={location} alt="location" />
               <span style={{ marginLeft: "10px" }}>
-                {data?.city.name}, {data?.address}
+                {realEstate?.city.name}, {realEstate?.address}
               </span>
             </>
           }
@@ -55,11 +60,11 @@ const Cards: React.FC<RealEstates | any> = ({ data }) => {
           description={
             <div style={{ marginTop: "15px" }}>
               <img src={bedrooms} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.bedrooms}</span>
+              <span style={{ marginLeft: "3px" }}>{realEstate?.bedrooms}</span>
               <img style={{ marginLeft: "30px" }} src={area} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.area}მ²</span>
+              <span style={{ marginLeft: "3px" }}>{realEstate?.area}მ²</span>
               <img style={{ marginLeft: "30px" }} src={zipCode} alt="" />{" "}
-              <span style={{ marginLeft: "3px" }}>{data?.zip_code}</span>
+              <span style={{ marginLeft: "3px" }}>{realEstate?.zip_code}</span>
             </div>
           }
         />

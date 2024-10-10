@@ -1,0 +1,30 @@
+.details {
+  display: flex;
+  margin-left: 150px;
+}
+.arrowLeft {
+  margin: 50px 0 20px 150px;
+}
+.leftCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.leftCard img {
+  width: 839px;
+  height: 670px;
+  border-radius: 14px 14px 0 0;
+}
+.leftCard label {
+  align-self: end;
+}
+.leftCard p {
+  color: white;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  padding: 9px 25px;
+  background-color: rgba(2, 21, 38, 0.4);
+  border-radius: 20px;
+  font-size: 20px;
+}

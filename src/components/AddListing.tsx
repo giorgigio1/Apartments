@@ -1,13 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import React, { useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import "../styles/listingPage.css";
-import { CheckOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import "../styles/header.css";
+import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { addListingSchema } from "../validationSchema/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CheckOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 interface IFormInputs {
@@ -57,7 +58,6 @@ const AddListing: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [agents, setAgents] = useState<Agent[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState<number | null>(null);
 
   const token = "9cfdee15-9ebf-4031-9312-e527806e013f";
 
@@ -174,7 +174,9 @@ const AddListing: React.FC = () => {
       <form className="listingForm" onSubmit={handleSubmit(onSubmit)}>
         {/* Transaction Type */}
         <div className="isRental">
-          <label className="title listingTitles">გარიგების ტიპი</label>
+          <label className="title listingTitles" htmlFor="Transaction type">
+            გარიგების ტიპი
+          </label>
           <div>
             <input
               className="saleInput"
@@ -182,14 +184,14 @@ const AddListing: React.FC = () => {
               value="0"
               {...register("is_rental")}
             />
-            <label>იყიდება</label>
+            <label htmlFor="sale">იყიდება</label>
             <input
               className="rentInput"
               type="radio"
               value="1"
               {...register("is_rental")}
             />
-            <label>ქირავდება</label>
+            <label htmlFor="for rent">ქირავდება</label>
           </div>
           <p className="listingErrors">
             {errors.is_rental?.message && "აირჩიეთ გარიგების ტიპი"}
@@ -197,11 +199,15 @@ const AddListing: React.FC = () => {
         </div>
 
         {/* Address and Location */}
-        <label className="locationTitle listingTitles">მდებარეობა</label>
+        <label className="locationTitle listingTitles" htmlFor="location">
+          მდებარეობა
+        </label>
         <div className="location">
           {/* Address */}
           <div className="address">
-            <label className="categoryTitle">მისამართი *</label>
+            <label className="categoryTitle" htmlFor="address">
+              მისამართი *
+            </label>
             <input type="text" {...register("address")} />
             <p
               style={{
@@ -217,7 +223,9 @@ const AddListing: React.FC = () => {
 
           {/* Zip Code */}
           <div className="zipCode">
-            <label className="categoryTitle">საფოსტო ინდექსი *</label>
+            <label className="categoryTitle" htmlFor="zip code">
+              საფოსტო ინდექსი *
+            </label>
             <input type="text" {...register("zip_code")} />
             <p
               style={{
@@ -233,7 +241,9 @@ const AddListing: React.FC = () => {
 
           {/* Region */}
           <div className="region">
-            <label className="categoryTitle">რეგიონი</label>
+            <label className="categoryTitle" htmlFor="region">
+              რეგიონი
+            </label>
             <select
               {...register("region_id")}
               onChange={(e) => setSelectedRegion(Number(e.target.value))}
@@ -252,7 +262,9 @@ const AddListing: React.FC = () => {
 
           {/* City */}
           <div className="city">
-            <label className="categoryTitle">ქალაქი</label>
+            <label className="categoryTitle" htmlFor="city">
+              ქალაქი
+            </label>
             <select {...register("city_id")} disabled={!selectedRegion}>
               <option value=""></option>
               {cities.map((city) => (
@@ -268,11 +280,18 @@ const AddListing: React.FC = () => {
         </div>
 
         {/* Home Details */}
-        <label className="homeDetailsLabel listingTitles">ბინის დეტალები</label>
+        <label
+          className="homeDetailsLabel listingTitles"
+          htmlFor="home details"
+        >
+          ბინის დეტალები
+        </label>
         <div className="homeDetails">
           {/* Price */}
           <div className="price">
-            <label className="categoryTitle">ფასი</label>
+            <label className="categoryTitle" htmlFor="price">
+              ფასი
+            </label>
             <input type="number" {...register("price")} />
             <p
               style={{
@@ -288,7 +307,9 @@ const AddListing: React.FC = () => {
 
           {/* Area */}
           <div className="area">
-            <label className="categoryTitle">ფართობი</label>
+            <label className="categoryTitle" htmlFor="area">
+              ფართობი
+            </label>
             <input type="number" {...register("area")} />
             <p
               style={{
@@ -304,7 +325,9 @@ const AddListing: React.FC = () => {
 
           {/* Bedrooms */}
           <div className="bedrooms">
-            <label className="categoryTitle">საძინებლების რაოდენობა*</label>
+            <label className="categoryTitle" htmlFor="bedrooms">
+              საძინებლების რაოდენობა*
+            </label>
             <input type="number" {...register("bedrooms")} />
             <p
               style={{
@@ -321,7 +344,9 @@ const AddListing: React.FC = () => {
 
         {/* Description */}
         <div className="description">
-          <label className="categoryTitle">აღწერა *</label>
+          <label className="categoryTitle" htmlFor="description">
+            აღწერა *
+          </label>
           <textarea {...register("description")} />
           <p
             style={{
@@ -373,7 +398,9 @@ const AddListing: React.FC = () => {
           აგენტი
         </label>
         <div className="agent">
-          <label className="categoryTitle">აირჩიე</label>
+          <label className="categoryTitle" htmlFor="agent">
+            აირჩიე
+          </label>
           <select {...register("agent_id")}>
             <option value=""></option>
             {agents.map((agent) => (
@@ -388,7 +415,7 @@ const AddListing: React.FC = () => {
         </div>
 
         {/* Form Actions */}
-        <div className="  ">
+        <div className="formActions">
           <button
             className="cancelButton"
             type="button"

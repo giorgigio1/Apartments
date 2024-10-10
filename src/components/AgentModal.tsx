@@ -54,7 +54,7 @@ const AgentModal: React.FC<AgentModalProps> = ({
     const token = "9cfdee15-9ebf-4031-9312-e527806e013f";
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://api.real-estate-manager.redberryinternship.ge/api/agents",
         formData,
         {
@@ -63,8 +63,6 @@ const AgentModal: React.FC<AgentModalProps> = ({
           },
         }
       );
-      console.log("Response:", response.data);
-      console.log("formData:", formData);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error submitting form:", error);
